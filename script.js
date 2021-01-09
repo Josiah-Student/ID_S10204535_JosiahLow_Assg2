@@ -23,21 +23,33 @@ $(document).ready(function () {
         }
     })
     
+    let btn = document.getElementById("btnSubmit");
 
-
-    document.getElementById("btnSubmit").addEventListener("click", function(event){
-        event.preventDefault();
-        event.stopImmediatePropagation();
-
-        
+    let fun = function(){
         $("#frm").valid();
         let bool = document.querySelector('input[name="radb"]:checked').value;
         $("#form1").hide();
         $("#res").show();
         Cloud();
-        return true;
-        }
-        ,false)
+    }
+
+
+    btn.addEventListener("click", fun ,false)
+
+
+    // for mobile view
+    if ('ontouchstart' in window) {
+        btn.addEventListener("touchstart", function() {
+            var touchHndl = function() {
+                //call the clickHandler actually
+                fun();
+                //remove the touchend haldler after perform
+                this.removeEventListener(touchHndl)
+            }
+            //attach a handler for touch end when you are in touchstart event
+            this.addEventListener(touchHndl);
+        });
+    }
     
 
     function Cloud(){
