@@ -29,7 +29,7 @@ $(document).ready(function () {
         let bool = document.querySelector('input[name="radb"]:checked').value;
         $("#form1").hide();
         $("#res").show();
-        //Cloud();
+        Cloud();
     };
 
 
