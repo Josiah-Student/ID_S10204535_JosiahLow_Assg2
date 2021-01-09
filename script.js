@@ -21,9 +21,8 @@ $(document).ready(function () {
             input1: "<b>Please enter a street name",
             radb: "<b>Please choose one"
         }
-    })
+    });
     
-    let btn = document.getElementById("btnSubmit");
 
     let fun = function(){
         $("#frm").valid();
@@ -31,10 +30,10 @@ $(document).ready(function () {
         $("#form1").hide();
         $("#res").show();
         //Cloud();
-    }
+    };
 
 
-    $("#btnSubmit").on("click touchstart", fun)
+    $("#btnSubmit").on("click touchstart", fun);
     
 
     function Cloud(){
@@ -54,9 +53,6 @@ $(document).ready(function () {
                 console.log(TrueResult);
                 let lat = (result.results[0].LATITUDE);
                 let long = (result.results[0].LONGTITUDE);
-
-                console.log("Latitude: ",lat)
-                console.log("Longitude: ", long)
                 // second ajax call
                 $.ajax({
                     type: "GET",
@@ -64,8 +60,7 @@ $(document).ready(function () {
                     contentType: "text/plain",
                     url:`https://developers.onemap.sg/privateapi/commonsvc/revgeocode?location=${lat},${long}&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjY5MzgsInVzZXJfaWQiOjY5MzgsImVtYWlsIjoiam9zaWFobG93MkBnbWFpbC5jb20iLCJmb3JldmVyIjpmYWxzZSwiaXNzIjoiaHR0cDpcL1wvb20yLmRmZS5vbmVtYXAuc2dcL2FwaVwvdjJcL3VzZXJcL3Nlc3Npb24iLCJpYXQiOjE2MTAxMTY5NDcsImV4cCI6MTYxMDU0ODk0NywibmJmIjoxNjEwMTE2OTQ3LCJqdGkiOiJkMmM0YmI4NDlhM2JmOTYwZDM5MDdlZmY5ZTM4OTUwMiJ9.-JRB9LxQjynMOx_iGyT62DncZcAPH2VyTCONvDwQBKU&buffer=${chk}&addressType=all`,
                     success: function(result2){
-                        var TrueResult2 = JSON.stringify(result2)  
-                        console.log(chk)                  
+                        var TrueResult2 = JSON.stringify(result2);                   
                         var i;
                         for (i = 0; i < TrueResult2.length; i++) {
                             let build = result2.GeocodeInfo[i].BUILDINGNAME;
@@ -73,7 +68,7 @@ $(document).ready(function () {
                             let road = result2.GeocodeInfo[i].ROAD;
                             let post = result2.GeocodeInfo[i].POSTALCODE;
                             $("#para").append("Building Name: ",build, "<br> " ,"Address: ", block," ", road," ", "S", post, "<br>");
-                            $("#para").append("<br>") 
+                            $("#para").append("<br>");
    
                     }
         
@@ -82,15 +77,6 @@ $(document).ready(function () {
         
                 });
     
-            }})
-
+            }});
     }
- 
-
-
-
-
-    
-
-    
-})
+});
