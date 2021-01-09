@@ -30,26 +30,11 @@ $(document).ready(function () {
         let bool = document.querySelector('input[name="radb"]:checked').value;
         $("#form1").hide();
         $("#res").show();
-        Cloud();
+        //Cloud();
     }
 
 
-    btn.addEventListener("click", fun ,false)
-
-
-    // for mobile view
-    if ('ontouchstart' in window) {
-        btn.addEventListener("touchstart", function() {
-            var touchHndl = function() {
-                //call the clickHandler actually
-                fun();
-                //remove the touchend haldler after perform
-                this.removeEventListener(touchHndl)
-            }
-            //attach a handler for touch end when you are in touchstart event
-            this.addEventListener(touchHndl);
-        });
-    }
+    $("#btnSubmit").on("click touchstart", fun)
     
 
     function Cloud(){
